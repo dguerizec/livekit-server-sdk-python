@@ -3,22 +3,22 @@ import datetime
 import jwt
 import pytest
 
-import livekit
+import livekit_server_sdk
 
 
 def test_access_token():
     with pytest.raises(ValueError):
-        grant = livekit.VideoGrant(room_join=True)
-        _ = livekit.AccessToken("key", "secret", grant=grant, identity=None)
+        grant = livekit_server_sdk.VideoGrant(room_join=True)
+        _ = livekit_server_sdk.AccessToken("key", "secret", grant=grant, identity=None)
 
 
 def test_access_token_jwt_with_identity():
     api_key = "key"
     api_secret = "secret"
-    grant = livekit.VideoGrant()
+    grant = livekit_server_sdk.VideoGrant()
     identity = "bob"
     name = "Bob"
-    access_token = livekit.AccessToken(
+    access_token = livekit_server_sdk.AccessToken(
         api_key, api_secret, grant=grant, name=name, identity=identity
     )
     token = access_token.to_jwt()
@@ -33,10 +33,10 @@ def test_access_token_jwt_with_identity():
 def test_access_token_with_metadata():
     api_key = "key"
     api_secret = "secret"
-    grant = livekit.VideoGrant()
+    grant = livekit_server_sdk.VideoGrant()
     identity = "Bob"
     metadata = "bob is cool"
-    access_token = livekit.AccessToken(
+    access_token = livekit_server_sdk.AccessToken(
         api_key,
         api_secret,
         grant=grant,
@@ -49,9 +49,9 @@ def test_access_token_with_metadata():
 
 
 def test_access_token_invalid_ttl():
-    grant = livekit.VideoGrant()
+    grant = livekit_server_sdk.VideoGrant()
     with pytest.raises(ValueError):
-        _ = livekit.AccessToken(
+        _ = livekit_server_sdk.AccessToken(
             "key",
             "secret",
             grant=grant,

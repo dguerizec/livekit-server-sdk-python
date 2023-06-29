@@ -1,6 +1,6 @@
 from dataclasses import asdict, dataclass
 
-from livekit import _utils  # noqa
+from livekit_server_sdk import _utils  # noqa
 
 
 def test_camel_case_dict():

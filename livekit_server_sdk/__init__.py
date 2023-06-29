@@ -14,10 +14,10 @@ import typing as t
 import jwt
 from twirp.context import Context as _TwirpContext
 
-from livekit import _utils
-from livekit import models as _models
-from livekit import room as _room
-from livekit import twirp as _twirp
+from livekit_server_sdk import _utils
+from livekit_server_sdk import models as _models
+from livekit_server_sdk import room as _room
+from livekit_server_sdk import twirp as _twirp
 
 DEFAULT_TOKEN_TTL = datetime.timedelta(hours=6)
 

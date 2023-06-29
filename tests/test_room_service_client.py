@@ -2,19 +2,19 @@ import os
 
 import pytest
 
-import livekit
+import livekit_server_sdk
 
 
 @pytest.fixture
-def client() -> livekit.RoomServiceClient:
+def client() -> livekit_server_sdk.RoomServiceClient:
     host = os.environ.get("LIVEKIT_HOST", "http://localhost:7880")
     api_key = os.environ["LIVEKIT_API_KEY"]
     api_secret = os.environ["LIVEKIT_API_SECRET"]
-    return livekit.RoomServiceClient(host, api_key, api_secret)
+    return livekit_server_sdk.RoomServiceClient(host, api_key, api_secret)
 
 
 @pytest.fixture
-def create_room(client) -> livekit.models.Room:
+def create_room(client) -> livekit_server_sdk.models.Room:
     return client.create_room("Test Room")
 
 
@@ -66,4 +66,4 @@ def test_update_room_metadata(client, create_room):
 
 def test_send_data(client, create_room):
     data = b"some awesome data"
-    client.send_data(create_room.name, data, livekit.models.DataPacket.RELIABLE)
+    client.send_data(create_room.name, data, livekit_server_sdk.models.DataPacket.RELIABLE)
